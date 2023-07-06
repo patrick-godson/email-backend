@@ -1,14 +1,14 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const cors = require('cors');
+const helmet = require('helmet');
 const bodyParser = require('body-parser');
 const Email = require("./models/emailModel");
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(helmet());
 app.use(bodyParser.urlencoded({extended: false}));
 
 
