@@ -1,21 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const helmet = require('helmet');
+const cors = require('cors');
 const bodyParser = require('body-parser');
+const path = require('path');
 const Email = require("./models/emailModel");
 
 const app = express();
 
 app.use(express.json());
-app.use(helmet());
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(express.static(path.join(__dirname, 'build')))
 
 
 dotenv.config();
 
+const uri = "mongodb+srv://patrickkabemba777:sjZj5fzCPUAZBewD@cluster1.lumchb6.mongodb.net/email?retryWrites=true&w=majority";
+
 mongoose.
-connect(process.env.MONGODB_CONNECTION_URI)
+connect(uri)
 .then(()=>{
     console.log("Connected to MongoDB");
 })
