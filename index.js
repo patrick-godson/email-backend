@@ -16,14 +16,12 @@ app.use(express.static(path.join(__dirname, 'build')))
 
 dotenv.config();
 
-const uri = "mongodb+srv://patrickkabemba777:sjZj5fzCPUAZBewD@cluster1.lumchb6.mongodb.net/email?retryWrites=true&w=majority";
-
 mongoose.
-connect(uri)
+connect(process.env.MONGO_URI)
 .then(()=>{
     console.log("Connected to MongoDB");
 })
-.catch (()=>{
+.catch ((error)=>{
     console.log(error);
 })
 
